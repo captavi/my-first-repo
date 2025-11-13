@@ -15,7 +15,6 @@ def zip_bytes(file_path: str, arcname: str = "lambda_function.py") -> bytes:
     return buf.getvalue()
 
 def upsert_lambda(lambda_client, function_name, role_arn, zip_bytes, region, env):
-    # Try update first, otherwise create
     try:
         resp = lambda_client.update_function_code(
             FunctionName=function_name,
